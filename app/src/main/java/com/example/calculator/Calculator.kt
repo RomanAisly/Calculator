@@ -9,13 +9,16 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults.indicatorLine
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,15 +43,16 @@ fun Calculator(state: CalculatorState,
             .fillMaxWidth()
             .align(Alignment.BottomCenter),
             verticalArrangement = Arrangement.spacedBy(buttonSpacing)) {
-            Text(text = state.number1 + (state.operation?.symbol ?: "") + state.number2,
+            Text(modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp),
+                softWrap = true,
+                maxLines = 2,
+                text = state.number1 + (state.operation?.symbol ?: "") + state.number2,
                 textAlign = TextAlign.End,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 32.dp),
                 fontWeight = FontWeight.Normal,
                 fontSize = 75.sp,
-                color = Color.White,
-                maxLines = 2)
+                color = Color.White)
             Row(modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(buttonSpacing)) {
                 CalculatorButton(symbol = "AC",
@@ -67,8 +71,7 @@ fun Calculator(state: CalculatorState,
                     onClick = { onAction(CalculatorAction.Delete) })
                 CalculatorButton(symbol = "/",
                     modifier = Modifier
-                        .background(brush = Brush.radialGradient(colors = listOf(gradOp1,
-                            gradOp2)))
+                        .background(brush = Brush.radialGradient(colors = listOf(gradOp1, gradOp2)))
                         .aspectRatio(1f)
                         .weight(1f),
                     onClick = { onAction(CalculatorAction.Operation(CalculatorOperation.Divide)) })
@@ -99,8 +102,7 @@ fun Calculator(state: CalculatorState,
                     onClick = { onAction(CalculatorAction.Number(9)) })
                 CalculatorButton(symbol = "x",
                     modifier = Modifier
-                        .background(brush = Brush.radialGradient(colors = listOf(gradOp1,
-                            gradOp2)))
+                        .background(brush = Brush.radialGradient(colors = listOf(gradOp1, gradOp2)))
                         .aspectRatio(1f)
                         .weight(1f),
                     onClick = { onAction(CalculatorAction.Operation(CalculatorOperation.Multiply)) })
@@ -131,8 +133,7 @@ fun Calculator(state: CalculatorState,
                     onClick = { onAction(CalculatorAction.Number(6)) })
                 CalculatorButton(symbol = "-",
                     modifier = Modifier
-                        .background(brush = Brush.radialGradient(colors = listOf(gradOp1,
-                            gradOp2)))
+                        .background(brush = Brush.radialGradient(colors = listOf(gradOp1, gradOp2)))
                         .aspectRatio(1f)
                         .weight(1f),
                     onClick = { onAction(CalculatorAction.Operation(CalculatorOperation.Minus)) })
@@ -163,8 +164,7 @@ fun Calculator(state: CalculatorState,
                     onClick = { onAction(CalculatorAction.Number(3)) })
                 CalculatorButton(symbol = "+",
                     modifier = Modifier
-                        .background(brush = Brush.radialGradient(colors = listOf(gradOp1,
-                            gradOp2)))
+                        .background(brush = Brush.radialGradient(colors = listOf(gradOp1, gradOp2)))
                         .aspectRatio(1f)
                         .weight(1f),
                     onClick = { onAction(CalculatorAction.Operation(CalculatorOperation.Plus)) })

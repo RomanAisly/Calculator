@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
 class CalculatorViewModel : ViewModel() {
-    //initialize params here
+   
     var state by mutableStateOf(CalculatorState())
         private set
     

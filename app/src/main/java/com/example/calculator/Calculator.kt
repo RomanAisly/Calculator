@@ -8,20 +8,24 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults.indicatorLine
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.calculator.ui.theme.gradBot1
 import com.example.calculator.ui.theme.gradBot2
 import com.example.calculator.ui.theme.gradNum1
@@ -39,20 +43,21 @@ fun Calculator(state: CalculatorState,
                buttonSpacing: Dp = 8.dp,
                onAction: (CalculatorAction) -> Unit) {
     Box(modifier = modifier) {
+        AnimLoad()
         Column(modifier = Modifier
             .fillMaxWidth()
             .align(Alignment.BottomCenter),
             verticalArrangement = Arrangement.spacedBy(buttonSpacing)) {
             Text(modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp),
-                softWrap = true,
+                .padding(vertical = 10.dp),
                 maxLines = 2,
                 text = state.number1 + (state.operation?.symbol ?: "") + state.number2,
                 textAlign = TextAlign.End,
                 fontWeight = FontWeight.Normal,
-                fontSize = 75.sp,
+                fontSize = 60.sp,
                 color = Color.White)
+            
             Row(modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(buttonSpacing)) {
                 CalculatorButton(symbol = "AC",
@@ -107,7 +112,6 @@ fun Calculator(state: CalculatorState,
                         .weight(1f),
                     onClick = { onAction(CalculatorAction.Operation(CalculatorOperation.Multiply)) })
             }
-            
             Row(modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(buttonSpacing)) {
                 CalculatorButton(symbol = "4",
@@ -195,5 +199,17 @@ fun Calculator(state: CalculatorState,
                     onClick = { onAction(CalculatorAction.Calculate) })
             }
         }
+    }
+}
+
+
+@Composable
+fun AnimLoad() {
+    Box(modifier = Modifier.size(150.dp), Alignment.TopEnd, propagateMinConstraints = true) {
+        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.animation_lks6lh1g))
+        val progress by animateLottieCompositionAsState(composition,
+            iterations = LottieConstants.IterateForever,
+            isPlaying = true)
+        LottieAnimation(composition = composition, progress = { progress })
     }
 }

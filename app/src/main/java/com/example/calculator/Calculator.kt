@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -202,14 +203,30 @@ fun Calculator(state: CalculatorState,
     }
 }
 
-
+@Preview
 @Composable
 fun AnimLoad() {
-    Box(modifier = Modifier.size(150.dp), Alignment.TopEnd, propagateMinConstraints = true) {
-        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.animation_lks6lh1g))
-        val progress by animateLottieCompositionAsState(composition,
-            iterations = LottieConstants.IterateForever,
-            isPlaying = true)
-        LottieAnimation(composition = composition, progress = { progress })
+    
+    Row(modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically) {
+        
+        Box(modifier = Modifier.size(130.dp)) {
+            val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.animation_lks6lh1g))
+            val progress by animateLottieCompositionAsState(composition,
+                iterations = LottieConstants.IterateForever,
+                isPlaying = true)
+            LottieAnimation(composition = composition, progress = { progress })
+        }
+        
+        Box(modifier = Modifier.size(110.dp)) {
+            val composition2 by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.anim_n2))
+            val progress2 by animateLottieCompositionAsState(composition2,
+                iterations = LottieConstants.IterateForever,
+                isPlaying = true)
+            LottieAnimation(composition = composition2, progress = { progress2 })
+        }
     }
+    
+    
 }

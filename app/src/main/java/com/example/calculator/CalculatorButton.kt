@@ -19,6 +19,6 @@ fun CalculatorButton(symbol: String, modifier: Modifier, onClick: () -> Unit) {
             .clip(CircleShape)
             .clickable { onClick() }
             .then(modifier)) {
-        Text(text = symbol, fontSize = 35.sp, color = Color.White, fontWeight = FontWeight.Normal)
+        Text(text = symbol, fontSize = 34.sp, color = Color.White, fontWeight = FontWeight.Normal)
     }
 }

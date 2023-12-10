@@ -18,7 +18,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -58,7 +57,7 @@ fun Calculator(state: CalculatorState,
                 fontWeight = FontWeight.Normal,
                 fontSize = 60.sp,
                 color = Color.White)
-            
+
             Row(modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(buttonSpacing)) {
                 CalculatorButton(symbol = "AC",
@@ -82,7 +81,7 @@ fun Calculator(state: CalculatorState,
                         .weight(1f),
                     onClick = { onAction(CalculatorAction.Operation(CalculatorOperation.Divide)) })
             }
-            
+
             Row(modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(buttonSpacing)) {
                 CalculatorButton(symbol = "7",
@@ -143,7 +142,7 @@ fun Calculator(state: CalculatorState,
                         .weight(1f),
                     onClick = { onAction(CalculatorAction.Operation(CalculatorOperation.Minus)) })
             }
-            
+
             Row(modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(buttonSpacing)) {
                 CalculatorButton(symbol = "1",
@@ -174,7 +173,7 @@ fun Calculator(state: CalculatorState,
                         .weight(1f),
                     onClick = { onAction(CalculatorAction.Operation(CalculatorOperation.Plus)) })
             }
-            
+
             Row(modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(buttonSpacing)) {
                 CalculatorButton(symbol = "0",
@@ -203,14 +202,13 @@ fun Calculator(state: CalculatorState,
     }
 }
 
-@Preview
 @Composable
 fun AnimLoad() {
-    
+
     Row(modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically) {
-        
+
         Box(modifier = Modifier.size(130.dp)) {
             val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.animation_lks6lh1g))
             val progress by animateLottieCompositionAsState(composition,
@@ -218,7 +216,7 @@ fun AnimLoad() {
                 isPlaying = true)
             LottieAnimation(composition = composition, progress = { progress })
         }
-        
+
         Box(modifier = Modifier.size(110.dp)) {
             val composition2 by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.anim_n2))
             val progress2 by animateLottieCompositionAsState(composition2,
@@ -227,6 +225,6 @@ fun AnimLoad() {
             LottieAnimation(composition = composition2, progress = { progress2 })
         }
     }
-    
-    
+
+
 }
